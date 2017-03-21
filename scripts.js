@@ -52,21 +52,23 @@ $(function() {
 
     this.id = randomString();
     this.description = description;
-    this.$element = createCard(); 
 
-    function createCard() {
-      let $card = $('<li>').addClass('card');
-      let $cardDescription = $('<p>').addClass('card-description').text(self.description);
-      let $cardDelete = $('<button>').addClass('btn-delete').text('x');
-
-      $cardDelete.click(function() {
-        self.removeCard();
+    let $card = $("<li>")
+      .addClass("card")
+      .attr({ 
+        title: this.description + ' #' + this.id
       });
+    let $cardDescription = $('<p>').addClass('card-description').text(self.description);
+    let $cardDelete = $('<button>').addClass('btn-delete').text('x');
+
+    $cardDelete.click(function() {
+      self.removeCard();
+    });
 
       $card.append($cardDelete)
-      .append($cardDescription);
-      return $card;
-    }
+        .append($cardDescription);
+
+    this.$element = $card;
   }
 
   Card.prototype = {
