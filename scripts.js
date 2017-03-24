@@ -1,8 +1,8 @@
 $(function() {
   
   function randomString() {
-    let chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
-    let str = '';
+    var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
+    var str = '';
     for (i = 0; i < 10; i++) {
         str += chars[Math.floor(Math.random() * chars.length)];
     }
@@ -10,18 +10,18 @@ $(function() {
   }
 
   function Column(name) {
-    let self = this;
+    var self = this;
 
     this.id = randomString();
     this.name = name;
     this.$element = createColumn();
 
     function createColumn() {
-      let $column = $('<div>').addClass('column');
-      let $columnTitle = $('<h2>').addClass('column-title').text(self.name);
-      let $columnCardList = $('<ul>').addClass('column-card-list');
-      let $columnDelete = $('<button>').addClass('btn-delete').text('x');
-      let $columnAddCard = $('<button>').addClass('add-card').text('Dodaj kartę');
+      var $column = $('<div>').addClass('column');
+      var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
+      var $columnCardList = $('<ul>').addClass('column-card-list');
+      var $columnDelete = $('<button>').addClass('btn-delete').text('x');
+      var $columnAddCard = $('<button>').addClass('add-card').text('Dodaj kartę');
 
       $columnDelete.click(function() {
         self.removeColumn();
@@ -48,18 +48,18 @@ $(function() {
   };
 
   function Card(description) {
-    let self = this;
+    var self = this;
 
     this.id = randomString();
     this.description = description;
 
-    let $card = $("<li>")
+    var $card = $("<li>")
       .addClass("card")
       .attr({ 
         title: this.description + ' #' + this.id
       });
-    let $cardDescription = $('<p>').addClass('card-description').text(self.description);
-    let $cardDelete = $('<button>').addClass('btn-delete').text('x');
+    var $cardDescription = $('<p>').addClass('card-description').text(self.description);
+    var $cardDelete = $('<button>').addClass('btn-delete').text('x');
 
     $cardDelete.click(function() {
       self.removeCard();
@@ -77,7 +77,7 @@ $(function() {
     },
   };
 
-  let board = {
+  var board = {
     name: 'Tablica Kanban',
     addColumn: function(column) {
       this.$element.append(column.$element);
@@ -95,14 +95,14 @@ $(function() {
 
   $('.create-column')
     .click(function() {
-      let name = prompt('Wpisz nazwę kolumny');
-      let column = new Column(name);
+      var name = prompt('Wpisz nazwę kolumny');
+      var column = new Column(name);
       board.addColumn(column);
     });
 
   // TWORZENIE KOLUMN
-  let todoColumn = new Column('Do zrobienia');
-  let doingColumn = new Column('W trakcie');
+  var todoColumn = new Column('Do zrobienia');
+  var doingColumn = new Column('W trakcie');
 
   // DODAWANIE KOLUMN DO TABLICY
   board.addColumn(todoColumn);
